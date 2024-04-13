@@ -49,7 +49,9 @@ app.get('/music',(req,res)=>{
 app.get('/viewblogs', async (req, res) => {
     res.redirect('http://localhost:7500');
 });
-
+app.get('/consultancy',async(req,res)=>{
+    res.render(__dirname+'/views/consultancy/consultancy.ejs')
+})
 app.post('/save-blog', (req, res) => {
   const { title, content, author } = req.body;
   const filename = `${title}${author}.txt`;
@@ -64,6 +66,7 @@ app.post('/save-blog', (req, res) => {
       }
   });
 });
+
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);   
   });
