@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import { fileURLToPath } from 'url';
 import { dirname }   from 'path';
 import path from 'path'
+import axios from 'axios';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -26,8 +27,10 @@ app.get('/contact',(req,res)=>{
 })
 
 // viewblogs
-app.get('/viewblogs',(req,res)=>{
-    res.render(__dirname+'/views/viewblogs/patientblog.ejs')
+app.get('/viewblogs',async(req,res)=>{
+    const resp = await axios.get("http://localhost:5000/app/notes/fetchallnotes");
+    console.log(resp.data)
+    res.render(__dirname+'/views/viewblogs/patientblog.ejs',{data:resp.data})
 })
 
 app.get('/addblogs',(req,res)=>{
