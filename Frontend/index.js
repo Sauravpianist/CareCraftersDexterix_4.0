@@ -25,7 +25,9 @@ app.get('/about',(req,res)=>{
 app.get('/contact',(req,res)=>{
     res.sendFile("contact/index.html")
 })
-
+app.get('/consultancy',(req,res)=>{
+    res.render(__dirname+'/views/consultancy/consultancy.ejs')
+})
 // viewblogs
 app.get('/viewblogs',async(req,res)=>{
     const resp = await axios.get("http://localhost:5000/app/notes/fetchallnotes");
